@@ -17,10 +17,8 @@ function createImage(data) {
   var newImage = document.createElement("img");
   newImage.src = data[0].url;
   if (data[0].width > 2000 || data[0].height > 2000) {
-    log(data[0]);
     data[0].width = data[0].width / 2;
     data[0].height = data[0].height / 2;
-    log(data[0]);
   }
   if (data[0].width >= data[0].height * 1.5) {
     newDiv.classList.add("horizontal");
