@@ -16,13 +16,20 @@ function createImage(data) {
   var newDiv = document.createElement("div");
   var newImage = document.createElement("img");
   newImage.src = data[0].url;
+  if (data[0].width > 2000 || data[0].height > 2000) {
+    log(data[0]);
+    data[0].width = data[0].width / 2;
+    data[0].height = data[0].height / 2;
+    log(data[0]);
+  }
   if (data[0].width >= data[0].height * 1.5) {
     newDiv.classList.add("horizontal");
   }
   if (data[0].height >= data[0].width * 1.5) {
     newDiv.classList.add("vertical");
   }
-  if (data[0].width > 1000 && (data[0].width < data[0].height * 1.5 || data[0].height < data[0].width * 1.5)) {
+
+  if (data[0].width > 1500 && (data[0].width < data[0].height * 1.5 || data[0].height < data[0].width * 1.5)) {
     newDiv.classList.add("big");
   }
 
