@@ -1,6 +1,8 @@
 let log = console.log;
 let modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modal__content");
+let modalLoading = document.querySelector(".modal__loading");
+let count = 0;
 let container = document.querySelector(".container");
 let btn = document.querySelector(".btn");
 
@@ -14,6 +16,16 @@ function createImage(data) {
   var newDiv = document.createElement("div");
   var newImage = document.createElement("img");
   newImage.src = data[0].url;
+  if (data[0].width >= data[0].height * 1.5) {
+    newDiv.classList.add("horizontal");
+  }
+  if (data[0].height >= data[0].width * 1.5) {
+    newDiv.classList.add("vertical");
+  }
+  if (data[0].width > 1000 && (data[0].width < data[0].height * 1.5 || data[0].height < data[0].width * 1.5)) {
+    newDiv.classList.add("big");
+  }
+
   newDiv.appendChild(newImage);
   container.appendChild(newDiv);
 }
@@ -31,4 +43,11 @@ var modalTimeOut = setTimeout(function () {
   setTimeout(function () {
     modal.style.display = "none";
   }, 1000);
-}, 12000);
+}, 11000);
+
+var modalLoadingInterval = setInterval(function () {
+  if (count <= 100) {
+    modalLoading.innerText = count;
+    count++;
+  }
+}, 100);
